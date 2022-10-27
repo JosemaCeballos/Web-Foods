@@ -11,10 +11,6 @@ const getApiInfo = async () => {
     let response = await results?.map((result) => {
       return {
         name: result.title,
-        vegetarian: result.vegetarian,
-        vegan: result.vegan,
-        glutenFree: result.glutenFree,
-        dairyFree: result.dairyFree,
         image: result.image,
         idApi: result.id,
         healthScore: result.healthScore,
@@ -25,7 +21,7 @@ const getApiInfo = async () => {
           result.analyzedInstructions[0] && result.analyzedInstructions[0].steps
             ? result.analyzedInstructions[0].steps
                 .map((item) => item.step)
-                .join(" \n")
+                .join(" ")
             : "",
       };
     });
@@ -63,7 +59,7 @@ const getDBInfo = async () => {
 const getAllRecipes = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDBInfo();
-  const allInfoRecipes = apiInfo.concat(dbInfo);
+  const allInfoRecipes = dbInfo.concat(apiInfo);
   return allInfoRecipes;
 };
 

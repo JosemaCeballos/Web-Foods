@@ -9,19 +9,18 @@ export class Menu extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Henry Recipes</h1>
+      <>
         {this.props.recipes &&
           this.props.recipes.map((el) => (
             <MenuCard
-              key={el.id}
+              key={el.idApi || el.id}
               id={el.id ? el.id : el.idApi}
               name={el.name}
               image={el.image}
               types={el.types.map((type) => type)}
             />
           ))}
-      </div>
+      </>
     );
   }
 }
