@@ -46,12 +46,13 @@ router.post("/", async (req, res) => {
       summary,
       healthScore,
       steps,
+      diets,
     });
     const dietsInDb = await Diet.findAll({
       where: { name: diets },
     });
     newRecipe.addDiet(dietsInDb);
-    res.status(200).json({ message: "La dieta fue creada" });
+    res.status(200).json(newRecipe);
   } catch (error) {
     res.status(404).send(error.message);
   }

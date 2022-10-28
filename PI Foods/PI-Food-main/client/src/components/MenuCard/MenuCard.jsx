@@ -13,7 +13,7 @@ function MenuCard(props) {
               <Link to={`/recipe/${props.id}`}>{props.name}</Link>
             </a>
           </h4>
-          <p>Type of Diet:</p>
+          <h5>Type of Diet:</h5>
           <p>-{`${props.types}-`}</p>
         </div>
       </div>

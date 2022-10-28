@@ -35,13 +35,13 @@ function Navbar() {
         </a>
       </div>
       <div className={`nav-items ${open && "open"}`}>
-        <a href="#" className="color-specified">
+        <a href="home" className="color-specified">
           <Link to="/">Home</Link>
         </a>
-        <a href="#" className="color-specified">
+        <a href="createrecipe" className="color-specified">
           <Link to="/create/recipe">Create Recipe</Link>
         </a>
-        <a href="#" className="color-specified">
+        <a href="about" className="color-specified">
           <Link to="/about">About</Link>
         </a>
       </div>

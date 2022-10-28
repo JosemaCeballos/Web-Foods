@@ -14,13 +14,15 @@
     width: 330px;
     height: 430px;
     border-radius: 8px;
-    box-shadow: 0 2px 2px rgb(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 1px 1px rgba(255, 170, 0, 0.632);
     overflow: hidden;
     margin: 20px;
     text-align: center;
     transition: all 0.25s;
     border: 2px solid white;
     background: rgba(223, 169, 68, 0.728);
+    flex-wrap: wrap;
+    display: flex;
 }
 
 .card-container .card:hover{
@@ -34,11 +36,18 @@
 }
 
 .card-container .card h4{
+    font-size: 22px;
     font-weight: 600;
 }
 
+.card-container .card h5{
+    padding-left: 100px;
+    font-size: 20px;
+    font-weight: 300;
+    color: white;
+}
+
 .card-container .card p{
-    padding-top: 20px;
     font-size: 16px;
     font-weight: 300;
     color: white;

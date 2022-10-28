@@ -1,15 +1,13 @@
 import React from "react";
 import * as actions from "../../redux/actions/index";
 import "./RecipeDetail.css";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function RecipeDetail(props) {
   let dispatch = useDispatch();
   let detail = useSelector((state) => state.recipeDetail);
   React.useEffect(() => {
     dispatch(actions.getAllRecipesById(props.match.params.id));
-    console.log(detail);
   }, []);
 
   return (
@@ -23,7 +21,13 @@ function RecipeDetail(props) {
           <h2>Summary:</h2>
           <p>{detail[0].summary} </p>
           <h2>Steps:</h2>
-          <p>{`${detail[0].steps ? detail[0].steps : "Does not have step to do it :("}`} </p>
+          <p>
+            {`${
+              detail[0].steps
+                ? detail[0].steps
+                : "Does not have step to do it :("
+            }`}{" "}
+          </p>
         </div>
       )}
     </div>
