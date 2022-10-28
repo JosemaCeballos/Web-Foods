@@ -19,7 +19,7 @@ function RecipeDetail(props) {
           <h2>Type of Diets</h2>
           <p>{detail[0].types} </p>
           <h2>Summary:</h2>
-          <p>{detail[0].summary} </p>
+          <p>{detail[0].summary}</p>
           <h2>Steps:</h2>
           <p>
             {`${

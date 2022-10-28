@@ -5,18 +5,20 @@ import "./MenuCard.css";
 function MenuCard(props) {
   return (
     <div className="card-container">
-      <div className="row">
-        <div className="card">
-          <img src={props.image} alt={props.name} />
-          <h4>
-            <a href="ignore">
-              <Link to={`/recipe/${props.id}`}>{props.name}</Link>
-            </a>
-          </h4>
-          <h5>Type of Diet:</h5>
-          <p>-{`${props.types}-`}</p>
+      <Link to={`/recipe/${props.id}`}>
+        <div className="row">
+          <div className="card">
+            <img src={props.image} alt={props.name} />
+            <h4>{props.name}</h4>
+            <h5>Type of Diet:</h5>
+            <ul>
+              {props.diets.map((el) => (
+                <li>{el}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

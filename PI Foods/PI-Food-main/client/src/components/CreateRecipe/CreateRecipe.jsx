@@ -53,16 +53,16 @@ function CreateRecipe() {
         <div className="form-header">
           <h1 className="form-title">Create your recipe!</h1>
         </div>
-        <label className="form-label">Name:</label>
+        <label className="form-label">Name of your recipe:</label>
         <input
           type="text"
           name="name"
           value={newRecipe.name}
           onChange={handleChange}
           className="form-input"
-          placeholder="Enter your name here..."
+          placeholder="Write the name here..."
         ></input>
-        <label className="form-label">Image:</label>
+        <label className="form-label">Recipe image url:</label>
         <input
           type="text"
           name="image"
@@ -88,7 +88,7 @@ function CreateRecipe() {
           className="form-textarea"
           placeholder="Enter the Summary..."
         ></textarea>
-        <label className="form-label">Steps:</label>
+        <label className="form-label">Steps to do it:</label>
         <textarea
           name="steps"
           value={newRecipe.steps}
@@ -96,7 +96,9 @@ function CreateRecipe() {
           className="form-textarea"
           placeholder="Enter the steps to do the recipe..."
         ></textarea>
-        <label className="form-label">Type of Diets:</label>
+        <label className="form-label">
+          Type of Diets(You can select more than one by clicking again):
+        </label>
         <select
           onChange={handleSelect}
           name="diets"

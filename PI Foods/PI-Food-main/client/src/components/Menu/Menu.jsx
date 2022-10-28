@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MenuCard from "../MenuCard/MenuCard";
 import * as actions from "../../redux/actions/index";
 import { connect } from "react-redux";
-import './Menu.css'
+import "./Menu.css";
 
 export class Menu extends Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ export class Menu extends Component {
               id={el.id ? el.id : el.idApi}
               name={el.name}
               image={el.image}
-              types={el.types?.map((type) => type) || "Your Diet :D"}
+              diets={el.diets?.map((type) => type) || "Your Diet :D"}
             />
           ))}
       </div>
