@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    margin: 20px;
+    margin: auto;
 }
 
 @media(max-width: 700px){
@@ -10,4 +10,3 @@
         grid-template-columns: 1fr;
     }
 }
-

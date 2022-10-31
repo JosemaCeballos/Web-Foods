@@ -36,7 +36,7 @@ function Navbar() {
       </div>
       <div className={`nav-items ${open && "open"}`}>
         <a href="home" className="color-specified">
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </a>
         <a href="createrecipe" className="color-specified">
           <Link to="/create/recipe">Create Recipe</Link>

@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
       );
       if (recetas.length) return res.json(recetas);
       else
-        return res.send(
+        return res.status(404).send(
           `No se ha podido encontrar una receta con el nombre ${name}`
         );
     }

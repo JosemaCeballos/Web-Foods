@@ -4,25 +4,24 @@ export const GET_RECIPE_BY_ID = "GET_RECIPE_BY_ID";
 export const GET_RECIPE_BY_NAME = "GET_RECIPE_BY_NAME";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_DIETS = "GET_DIETS";
+export const FILTER_BY_DIETS = "FILTER_BY_DIETS";
+export const FILTER_BY_ORDER = "FILTER_BY_ORDER";
+export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
+export const CLEAN_FILTERS = "CLEAN_FILTERS";
+export const FILTER_BY_TYPE_ID = "FILTER_BY_TYPE_ID";
+export const FILTER_BY_SEARCHBAR = "FILTER_BY_SEARCHBAR"
+
 
 export const getAllRecipes = () => {
   return async function (dispatch) {
-    try {
-      let recipes = await axios.get("http://localhost:3001/recipes/");
-      return dispatch({ type: GET_ALL_RECIPES, payload: recipes.data });
-    } catch (error) {
-      console.log(error);
-    }
+    let recipes = await axios.get("http://localhost:3001/recipes/");
+    return dispatch({ type: GET_ALL_RECIPES, payload: recipes.data });
   };
 };
 export const getAllRecipesById = (id) => {
   return async function (dispatch) {
-    try {
-      let recipeById = await axios.get(`http://localhost:3001/recipes/${id}`);
-      return dispatch({ type: GET_RECIPE_BY_ID, payload: recipeById.data });
-    } catch (error) {
-      console.log(error);
-    }
+    let recipeById = await axios.get(`http://localhost:3001/recipes/${id}`);
+    return dispatch({ type: GET_RECIPE_BY_ID, payload: recipeById.data });
   };
 };
 export const getAllRecipesByName = (name) => {
@@ -31,9 +30,10 @@ export const getAllRecipesByName = (name) => {
       let recipeByName = await axios.get(
         `http://localhost:3001/recipes?name=${name}`
       );
+      console.log(recipeByName)
       return dispatch({ type: GET_RECIPE_BY_NAME, payload: recipeByName.data });
     } catch (error) {
-      console.log(error);
+      console.log(error.message)
     }
   };
 };
@@ -54,3 +54,45 @@ export const createRecipe = (recipe) => {
     return dispatch({ type: CREATE_RECIPE, payload: createRecipe.data });
   };
 };
+
+export function getFilterByDiets(payload) {
+  return {
+    type: FILTER_BY_DIETS,
+    payload: payload,
+  };
+}
+
+export function filterByOrder(payload) {
+  return {
+    type: FILTER_BY_ORDER,
+    payload: payload,
+  };
+}
+
+export function orderByScore(payload) {
+  return {
+    type: ORDER_BY_SCORE,
+    payload: payload,
+  };
+}
+
+export function cleanFilters(payload) {
+  return {
+    type: CLEAN_FILTERS,
+    payload: payload,
+  };
+}
+
+export function filterByTypeId(payload) {
+  return {
+    type: FILTER_BY_TYPE_ID,
+    payload: payload,
+  };
+}
+
+export function filterBySearchBar(payload){
+  return {
+    type: FILTER_BY_SEARCHBAR,
+    payload: payload
+  }
+}

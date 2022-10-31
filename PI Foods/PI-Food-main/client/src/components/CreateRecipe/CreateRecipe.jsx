@@ -24,12 +24,10 @@ function CreateRecipe() {
   };
 
   const handleSelect = (e) => {
-    if (!newRecipe.diets.includes(e.target.value)) {
-      setNewRecipe({
-        ...newRecipe,
-        diets: [...newRecipe.diets, e.target.value],
-      });
-    }
+    setNewRecipe({
+      ...newRecipe,
+      diets: [...newRecipe.diets, e.target.value],
+    });
   };
 
   function dispatchData(newRecipe) {
@@ -99,12 +97,7 @@ function CreateRecipe() {
         <label className="form-label">
           Type of Diets(You can select more than one by clicking again):
         </label>
-        <select
-          onChange={handleSelect}
-          name="diets"
-          value={newRecipe.diets}
-          className="form-input"
-        >
+        <select onChange={handleSelect} name="diets" className="form-input">
           <option disabled>Add diet type</option>
           <option>gluten free</option>
           <option>pescatarian</option>

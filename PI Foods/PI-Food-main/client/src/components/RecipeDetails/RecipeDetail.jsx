@@ -7,8 +7,8 @@ function RecipeDetail(props) {
   let dispatch = useDispatch();
   let detail = useSelector((state) => state.recipeDetail);
   React.useEffect(() => {
-    dispatch(actions.getAllRecipesById(props.match.params.id));
-  }, []);
+    dispatch(actions.getAllRecipesById(props.match.params.id || props.match.params.idApi));
+  }, [dispatch, props.match.params.id, props.match.params.idApi]);
 
   return (
     <div className="bg">
@@ -17,7 +17,7 @@ function RecipeDetail(props) {
           <h1>{detail[0].name} </h1>
           <img src={detail[0].image} alt="food" />
           <h2>Type of Diets</h2>
-          <p>{detail[0].types} </p>
+          <p>{detail[0].diets ? detail[0].diets : detail[0].types} </p>
           <h2>Summary:</h2>
           <p>{detail[0].summary}</p>
           <h2>Steps:</h2>
