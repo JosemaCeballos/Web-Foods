@@ -7,8 +7,6 @@ export const GET_DIETS = "GET_DIETS";
 export const FILTER_BY_DIETS = "FILTER_BY_DIETS";
 export const FILTER_BY_ORDER = "FILTER_BY_ORDER";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
-export const CLEAN_FILTERS = "CLEAN_FILTERS";
-export const FILTER_BY_TYPE_ID = "FILTER_BY_TYPE_ID";
 export const FILTER_BY_SEARCHBAR = "FILTER_BY_SEARCHBAR"
 
 
@@ -30,7 +28,6 @@ export const getAllRecipesByName = (name) => {
       let recipeByName = await axios.get(
         `http://localhost:3001/recipes?name=${name}`
       );
-      console.log(recipeByName)
       return dispatch({ type: GET_RECIPE_BY_NAME, payload: recipeByName.data });
     } catch (error) {
       console.log(error.message)
@@ -41,6 +38,7 @@ export const getAllRecipesByName = (name) => {
 export const getDiets = () => {
   return async function (dispatch) {
     const diets = await axios.get("http://localhost:3001/diets");
+    console.log(diets)
     return dispatch({ type: GET_DIETS, payload: diets.data });
   };
 };
@@ -74,25 +72,4 @@ export function orderByScore(payload) {
     type: ORDER_BY_SCORE,
     payload: payload,
   };
-}
-
-export function cleanFilters(payload) {
-  return {
-    type: CLEAN_FILTERS,
-    payload: payload,
-  };
-}
-
-export function filterByTypeId(payload) {
-  return {
-    type: FILTER_BY_TYPE_ID,
-    payload: payload,
-  };
-}
-
-export function filterBySearchBar(payload){
-  return {
-    type: FILTER_BY_SEARCHBAR,
-    payload: payload
-  }
 }

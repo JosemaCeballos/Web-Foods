@@ -11,8 +11,6 @@ import Paginate from "../Paginate/Paginate";
 function Home() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
-  const diet = useSelector((state) => state.types);
-
   const [order, setOrder] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,9 +25,6 @@ function Home() {
 
   useEffect(() => {
     dispatch(getAllRecipes());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
 

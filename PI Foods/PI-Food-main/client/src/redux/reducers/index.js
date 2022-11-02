@@ -7,9 +7,6 @@ import {
   FILTER_BY_DIETS,
   FILTER_BY_ORDER,
   ORDER_BY_SCORE,
-  FILTER_BY_TYPE_ID,
-  FILTER_BY_SEARCHBAR,
-  CLEAN_FILTERS,
 } from "../actions/index.js";
 
 const initialState = {
@@ -56,11 +53,11 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_BY_ORDER:
       const recipeInOrder =
         action.payload === "up"
-          ? state.stateToFilters.sort((a, b) => {
+          ? state.recipes.sort((a, b) => {
               if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
               else return -1;
             })
-          : state.stateToFilters.sort((a, b) => {
+          : state.recipes.sort((a, b) => {
               if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
               else return -1;
             });
@@ -85,51 +82,20 @@ const rootReducer = (state = initialState, action) => {
       };
     case ORDER_BY_SCORE:
       const orderByScore =
-        action.payload === "Hsc"
-          ? state.stateToFilters.sort((a, b) => {
+        action.payload === "Filter by Order"
+          ? state.recipes
+          : action.payload === "Hsc"
+          ? state.recipes.sort((a, b) => {
               if (a.healthScore - b.healthScore < 0) return 1;
               else return -1;
             })
-          : state.stateToFilters.sort((a, b) => {
+          : state.recipes.sort((a, b) => {
               if (a.healthScore - b.healthScore > 0) return 1;
               else return -1;
             });
       return {
         ...state,
-        recipes:
-          action.payload === "Filter by Order"
-            ? state.stateToCleanFilters
-            : orderByScore,
-      };
-    case FILTER_BY_TYPE_ID:
-      const filterById = action.payload
-        ? action.payload === "idApi"
-          ? state.stateToFilters.filter((recipe) =>
-              recipe.hasOwnProperty("idApi")
-            )
-          : state.stateToFilters.filter((recipe) => recipe.hasOwnProperty("id"))
-        : action.payload === "id"
-        ? state.stateToFilters.filter((recipe) => recipe.hasOwnProperty("id"))
-        : state.stateToFilters.filter((recipe) =>
-            recipe.hasOwnProperty("idApi")
-          );
-      return {
-        ...state,
-        recipes: filterById,
-      };
-    case FILTER_BY_SEARCHBAR:
-      const filterSearchBar = state.stateToFilters.filter((recipe) => {
-        if (recipe.name.toLowerCase().includes(action.payload)) return recipe;
-      });
-      return {
-        ...state,
-        recipes: filterSearchBar,
-      };
-    case CLEAN_FILTERS:
-      const cleanState = state.stateToCleanFilters;
-      return {
-        ...state,
-        recipes: action.payload === "clean" ? cleanState : [],
+        recipes: orderByScore,
       };
     default:
       return state;

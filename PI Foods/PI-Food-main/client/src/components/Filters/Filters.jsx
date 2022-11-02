@@ -2,8 +2,7 @@ import {
   filterByOrder,
   getFilterByDiets,
   orderByScore,
-  filterByTypeId,
-  cleanFilters,
+  getAllRecipes,
 } from "../../redux/actions/index.js";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -30,16 +29,10 @@ function Filters({ setOrder, setCurrentPage, recipes }) {
     setCurrentPage(1);
     setOrder(`${evt.target.value}`);
   }
-  function handleFilterByTypeId(evt) {
-    evt.preventDefault();
-    dispatch(filterByTypeId(evt.target.value));
-    setCurrentPage(1);
-    setOrder(`${evt.target.value}`);
-  }
   function handleClearFilter(evt) {
     evt.preventDefault();
     setCurrentPage(1)
-    dispatch(cleanFilters(evt.target.value));
+    dispatch(getAllRecipes());
   }
 
   return (
@@ -106,21 +99,6 @@ function Filters({ setOrder, setCurrentPage, recipes }) {
           </option>
           <option key="Dsc" value="Dsc">
             Health Score Desc
-          </option>
-        </select>
-        <select
-          defaultValue="Db or Api"
-          onChange={(event) => handleFilterByTypeId(event)}
-          className="form-selected"
-        >
-          <option key="All" value="All">
-            API or DB
-          </option>
-          <option key="idApi" value="idApi">
-            API
-          </option>
-          <option key="id" value="id">
-            DataBase
           </option>
         </select>
       </div>
