@@ -1,26 +1,61 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as actions from "../../redux/actions/index";
 import "./CreateRecipe.css";
 
+export function validate(newRecipe) {
+  let errors = {};
+  if (!newRecipe.name) {
+    errors.name = "Required a name";
+  } else if (!/([A-Z])\w+/.test(newRecipe.name)) {
+    errors.name =
+      "In name, the first letter must be capital and must have more than one letter ";
+  }
+
+  if (isNaN(Number(newRecipe.healthScore))) {
+    errors.healthScore = "Health Score must be a number";
+  } else if (newRecipe.healthScore > 100) {
+    errors.healthScore = "Health Score must be less than 100";
+  } else if (newRecipe.healthScore < 0) {
+    errors.healthScore = "Health Score must be more than 0";
+  }
+
+  if (!newRecipe.summary) {
+    errors.summary = "Required a summary";
+  }
+
+  if (!newRecipe.steps) {
+    errors.steps = "Required steps";
+  }
+  return errors;
+}
+
 function CreateRecipe() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [newRecipe, setNewRecipe] = useState({
     name: "",
-    image:
-      "https://image.shutterstock.com/image-photo/error-404-page-website-not-260nw-476878477.jpg",
+    image:"",
     healthScore: 0,
     summary: "",
     steps: "",
     diets: [],
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setNewRecipe({
       ...newRecipe,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...newRecipe,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSelect = (e) => {
@@ -45,6 +80,7 @@ function CreateRecipe() {
           e.preventDefault();
           getDiets();
           dispatchData(newRecipe);
+          setTimeout(() => history.push("/home"), 2000);
         }}
         className="form"
       >
@@ -60,6 +96,7 @@ function CreateRecipe() {
           className="form-input"
           placeholder="Write the name here..."
         ></input>
+        {errors.name && <p className="danger">{errors.name}</p>}
         <label className="form-label">Recipe image url:</label>
         <input
           type="text"
@@ -78,6 +115,7 @@ function CreateRecipe() {
           className="form-input"
           placeholder="Enter the score..."
         ></input>
+        {errors.healthScore && <p className="danger">{errors.healthScore}</p>}
         <label className="form-label">Summary:</label>
         <textarea
           name="summary"
@@ -86,6 +124,7 @@ function CreateRecipe() {
           className="form-textarea"
           placeholder="Enter the Summary..."
         ></textarea>
+        {errors.summary && <p className="danger">{errors.summary}</p>}
         <label className="form-label">Steps to do it:</label>
         <textarea
           name="steps"
@@ -94,6 +133,7 @@ function CreateRecipe() {
           className="form-textarea"
           placeholder="Enter the steps to do the recipe..."
         ></textarea>
+        {errors.steps && <p className="danger">{errors.steps}</p>}
         <label className="form-label">
           Type of Diets(You can select more than one by clicking again):
         </label>

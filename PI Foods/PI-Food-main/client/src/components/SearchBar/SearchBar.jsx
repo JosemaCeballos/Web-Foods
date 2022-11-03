@@ -16,8 +16,10 @@ function SearchBar() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    dispatch(getAllRecipesByName(name));
-    setName("");
+    if(name){
+      dispatch(getAllRecipesByName(name));
+      setName("");
+    }
   }
 
   return (
@@ -29,7 +31,7 @@ function SearchBar() {
           placeholder="Search Recipe..."
           onChange={(evt) => handleInput(evt)}
         />
-        <button type="submit" onClick={(evt) => handleSubmit(evt)}>
+        <button type="submit" className="form-submit-search" onClick={(evt) => handleSubmit(evt)}>
           Search!
         </button>
       </div>

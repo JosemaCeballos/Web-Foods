@@ -7,23 +7,19 @@ const { getAllRecipes } = require("../controllers/controllers");
 //Me traigo la info de la API y de la database, y además me lo busque por nombre
 router.get("/", async (req, res) => {
   const { name } = req.query;
-  try {
-    const allRecipes = await getAllRecipes();
-    if (name) {
-      // verificamos si el name que esta en el query
-      const recetas = allRecipes.filter((r) =>
-        r.name.toLowerCase().includes(name.toLowerCase())
-      );
-      if (recetas.length) return res.json(recetas);
-      else
-        return res.status(404).send(
-          `No se ha podido encontrar una receta con el nombre ${name}`
-        );
-    }
-    res.json(allRecipes);
-  } catch (error) {
-    res.status(404).send(error);
+  const allRecipes = await getAllRecipes();
+  if (name) {
+    // verificamos si el name que esta en el query
+    const recetas = allRecipes.filter((r) =>
+      r.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (recetas.length) return res.json(recetas);
+    else
+      return res
+        .status(404)
+        .send(`No se ha podido encontrar una receta con el nombre ${name}`);
   }
+  res.status(200).json(allRecipes);
 });
 
 router.get("/:idReceta", async (req, res) => {

@@ -1,9 +1,36 @@
 p{
     color:white
 }
-h2{
-    color: white
+h3{
+    color: #ff851f;
+    font-family: Arial, Helvetica, sans-serif;
 }
 h1{
-    color: white;
+    color: #ff851f;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.about-recipe{
+    max-width: 80%;
+    border: 3px solid #ff851f;
+    border-radius: 10px;
+    margin: auto;
+    padding: 30px 30px;
+    background: rgba(0,0,0,.6);
+    text-align: center;
+}
+
+.main{
+    object-fit: cover;
+    object-fit: cover;
+}
+
+.img-content img {
+    height: auto;
+}
+
+@media(max-width: 500px){
+    .about-recipe{
+        max-width: 100%;
+    }
 }

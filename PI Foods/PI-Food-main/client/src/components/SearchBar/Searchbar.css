@@ -22,3 +22,17 @@
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.form-submit-search{
+    background: #ff851b;
+    border: none;
+    outline: none;
+    color: white;
+    border: 1px solid rgba(0,0,0,.7);
+    cursor: pointer;
+    padding: 2px;
+}
+
+.form-submit-search:active {
+    background: rgb(255, 179, 37);
+}

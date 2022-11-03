@@ -7,6 +7,7 @@ import {
   FILTER_BY_DIETS,
   FILTER_BY_ORDER,
   ORDER_BY_SCORE,
+  ERROR_MSSG,
 } from "../actions/index.js";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   diets: [],
   stateToFilters: [],
   stateToCleanFilters: [],
+  msg: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -32,11 +34,9 @@ const rootReducer = (state = initialState, action) => {
         recipeDetail: action.payload,
       };
     case GET_RECIPE_BY_NAME:
-      const recipeByName = state.stateToCleanFilters;
       return {
         ...state,
         recipes: action.payload,
-        stateToFilters: recipeByName,
       };
     case CREATE_RECIPE:
       return {
@@ -52,14 +52,18 @@ const rootReducer = (state = initialState, action) => {
       };
     case FILTER_BY_ORDER:
       const recipeInOrder =
-        action.payload === "up"
-          ? state.recipes.sort((a, b) => {
-              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-              else return -1;
+        action.payload === "Filter by Order"
+          ? state.stateToCleanFilters
+          : action.payload === "up"
+          ? state.recipes.sort(function (a, b) {
+              if (a.name > b.name) return 1;
+              if (a.name < b.name) return -1;
+              return 0;
             })
-          : state.recipes.sort((a, b) => {
-              if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-              else return -1;
+          : state.recipes.sort(function (a, b) {
+              if (a.name > b.name) return -1;
+              if (b.name > a.name) return 1;
+              return 0;
             });
       return {
         ...state,
@@ -72,6 +76,7 @@ const rootReducer = (state = initialState, action) => {
           if (recipe.diets.find((element) => element === action.payload))
             return recipe;
         }
+        return 0;
       });
       return {
         ...state,
@@ -82,7 +87,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case ORDER_BY_SCORE:
       const orderByScore =
-        action.payload === "Filter by Order"
+        action.payload === "Order by score"
           ? state.recipes
           : action.payload === "Hsc"
           ? state.recipes.sort((a, b) => {
@@ -97,6 +102,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: orderByScore,
       };
+    case ERROR_MSSG:
+      return {
+        ...state,
+        msg: action.payload,
+        recipes: []
+      }
     default:
       return state;
   }

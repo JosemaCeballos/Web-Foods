@@ -11,6 +11,9 @@ import Paginate from "../Paginate/Paginate";
 function Home() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
+  const diet = useSelector((state) => state.diets);
+  const msg = useSelector((state) => state.msg);
+
   const [order, setOrder] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +34,11 @@ function Home() {
   return (
     <>
       <SearchBar />
-      <Filters setOrder={setOrder} setCurrentPage={setCurrentPage} recipes={recipes} />
+      <Filters
+        setOrder={setOrder}
+        setCurrentPage={setCurrentPage}
+        recipes={recipes}
+      />
       <Paginate
         recipesPerPage={recipesPerPage}
         recipes={recipes.length}
@@ -45,9 +52,11 @@ function Home() {
               id={el.id || el.idApi}
               name={el.name}
               image={el.image}
-              types={el.diets ? el.diets : el.types}
+              types={el.diets.length > 0 ? el.diets : el.types}
             />
           ))
+        ) : !recipes.length ? (
+          <div className="center-content">{msg}</div>
         ) : (
           <Loader />
         )}

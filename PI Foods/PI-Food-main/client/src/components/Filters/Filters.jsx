@@ -43,7 +43,7 @@ function Filters({ setOrder, setCurrentPage, recipes }) {
           onChange={(event) => handleFilterByOrder(event)}
           className="form-selected"
         >
-          <option>Filter by Order</option>
+          <option key="Filter by Order" value="Filter by Order">Filter by Order</option>
           <option key="up" value="up">
             A-Z
           </option>

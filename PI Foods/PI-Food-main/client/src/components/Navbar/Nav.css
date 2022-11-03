@@ -36,7 +36,7 @@
     font-size: 18px;
     padding-left: 10px;
 }
-.Navbar > .nav-items > a{
+.Navbar > .nav-items > .color-specified{
     font-size: 16px;
     margin: 15px;
     text-decoration: none;
@@ -49,11 +49,11 @@ a{
     font-size: 16px;
 }
 
-.Navbar > .nav-items > a:hover{
+.Navbar > .nav-items > .color-specified:hover{
     opacity: 1;
 }
 
-.Navbar > .nav-items > a::before{
+.Navbar > .nav-items > .color-specified::before{
     content: "";
     position: absolute;
     left: 0;
@@ -64,7 +64,7 @@ a{
     transition: all .45s;
 }
 
-.Navbar > .nav-items > a:hover::before{
+.Navbar > .nav-items > .color-specified:hover::before{
     width: 100%;
 }
 
@@ -93,7 +93,7 @@ a{
         transition: all .45s;
     }
 
-    .Navbar > .nav-items > a::before{
+    .Navbar > .nav-items > .color-specified::before{
         background: transparent;
     }
 
