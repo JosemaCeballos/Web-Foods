@@ -37,7 +37,7 @@ function CreateRecipe() {
 
   const [newRecipe, setNewRecipe] = useState({
     name: "",
-    image:"",
+    image: "",
     healthScore: 0,
     summary: "",
     steps: "",
@@ -64,6 +64,13 @@ function CreateRecipe() {
       diets: [...newRecipe.diets, e.target.value],
     });
   };
+
+  function handleDelete(e) {
+    setNewRecipe({
+      ...newRecipe,
+      diets: newRecipe.diets.filter((acc) => acc !== e),
+    });
+  }
 
   function dispatchData(newRecipe) {
     dispatch(actions.createRecipe(newRecipe));
@@ -150,7 +157,25 @@ function CreateRecipe() {
           <option>ketogenic</option>
           <option>paleolithic</option>
         </select>
-        <input type="submit" className="btn-submit"></input>
+        {newRecipe.diets.map((e) => (
+          <div key={e}>
+            <button className="form-input-diets">{e}</button>
+            <button className="delete" onClick={() => handleDelete(e)}>
+              X
+            </button>
+          </div>
+        ))}
+        {!newRecipe.name ? (
+          <input type="submit" className="btn-submit" disabled></input>
+        ) : errors.name ||
+          errors.diets ||
+          errors.summary ||
+          errors.healthScore ||
+          errors.steps ? (
+          <input type="submit" className="btn-submit" disabled></input>
+        ) : (
+          <input type="submit" className="btn-submit"></input>
+        )}
       </form>
     </div>
   );

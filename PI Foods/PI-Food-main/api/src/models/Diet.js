@@ -12,10 +12,29 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
+        validate: {
+          isUUID: 4,
+        },
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          isIn: [
+            [
+              "gluten free",
+              "dairy free",
+              "ketogenic",
+              "lacto ovo vegetarian",
+              "vegan",
+              "pescatarian",
+              "paleolithic",
+              "primal",
+              "fodmap friendly",
+              "whole 30",
+            ],
+          ],
+        }
       },
     },
     { timestamps: false }

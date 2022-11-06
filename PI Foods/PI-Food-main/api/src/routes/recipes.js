@@ -17,10 +17,12 @@ router.get("/", async (req, res) => {
     else
       return res
         .status(404)
-        .send(`No se ha podido encontrar una receta con el nombre ${name}`);
+        .send(`Could not find a recipe with the name ${name}`);
   }
   res.status(200).json(allRecipes);
 });
+
+//! --------------------------------------------------------
 
 router.get("/:idReceta", async (req, res) => {
   const { idReceta } = req.params;
@@ -30,8 +32,10 @@ router.get("/:idReceta", async (req, res) => {
     (e) => e.idApi == idReceta || e.id == idReceta
   );
   if (infoById.length > 0) res.status(200).json(infoById);
-  else res.status(400).send("No existe una receta con ese id");
+  else res.status(404).send("There is no recipe with that id");
 });
+
+//! --------------------------------------------------------
 
 router.post("/", async (req, res) => {
   let { name, summary, healthScore, image, steps, diets } = req.body;
@@ -48,7 +52,7 @@ router.post("/", async (req, res) => {
       where: { name: diets },
     });
     newRecipe.addDiet(dietsInDb);
-    res.status(200).json(newRecipe);
+    res.status(201).json(newRecipe);
   } catch (error) {
     res.status(404).send(error.message);
   }

@@ -17,8 +17,8 @@
     overflow: hidden;
     margin: 20px;
     transition: all 0.25s;
-    border: 2px solid white;
-    background: rgba(223, 169, 68, 0.728);
+    border: 2px solid rgba(255, 255, 255, 0.272);
+    background: #ff841f8f;
     flex-wrap: wrap;
 }
 

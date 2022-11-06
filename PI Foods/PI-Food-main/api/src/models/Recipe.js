@@ -12,27 +12,41 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
+        validate: {
+          isUUID: 4,
+        },
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          is: /([A-Z])\w+/,
+          notEmpty: true,
+        },
       },
       summary: {
         type: DataTypes.TEXT,
         allowNull: false,
-        //defaultValue: "No summary",
+        validate: {
+          notEmpty: true,
+        },
       },
       healthScore: {
         type: DataTypes.INTEGER,
-        //defaultValue: 0,
+        validate: {
+          isInt: true,
+          min: 0,
+          max: 100,
+        },
       },
       steps: {
         type: DataTypes.TEXT,
+        validate: {
+          notEmpty: true,
+        },
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue:
-          "https://cdn.dribbble.com/users/189859/screenshots/3639645/abc.gif",
       },
       createdInDb: {
         type: DataTypes.BOOLEAN,

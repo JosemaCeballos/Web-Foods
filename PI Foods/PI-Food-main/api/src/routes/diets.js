@@ -24,9 +24,9 @@ router.get("/", async (req, res) => {
       });
     });
     const all = await Diet.findAll();
-    res.status(200).send(all)
+    res.status(200).send(all);
   } catch (error) {
-    res.status(404).send("Error")
+    res.status(404).send("Diets not found");
   }
 });
 

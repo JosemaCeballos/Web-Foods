@@ -47,7 +47,7 @@ const getDBInfo = async () => {
         name: recipe.name,
         summary: recipe.summary,
         healthScore: recipe.healthScore,
-        image: recipe.image,
+        image: recipe.image === "" ? "https://cdn.dribbble.com/users/1012566/screenshots/4187820/topic-2.jpg" : recipe.image,
         steps: recipe.steps,
         diets: recipe.diets?.map((diet) => diet.name),
       };

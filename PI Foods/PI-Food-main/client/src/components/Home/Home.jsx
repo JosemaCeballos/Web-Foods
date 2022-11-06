@@ -37,7 +37,6 @@ function Home() {
       <Filters
         setOrder={setOrder}
         setCurrentPage={setCurrentPage}
-        recipes={recipes}
       />
       <Paginate
         recipesPerPage={recipesPerPage}

@@ -8,7 +8,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import "./Filters.css";
 
-function Filters({ setOrder, setCurrentPage, recipes }) {
+function Filters({ setOrder, setCurrentPage }) {
   const dispatch = useDispatch();
 
   function handleFilterByOrder(evt) {

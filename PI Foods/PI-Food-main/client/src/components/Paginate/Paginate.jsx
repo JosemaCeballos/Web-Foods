@@ -16,14 +16,12 @@ function Paginate({
  
   return (
     <div className="pagination">
-      <button>Prev</button>
       {pageNumbers &&
         pageNumbers.map((number) => (
           <button onClick={() => paginado(number)} key={number}>
             {number}
           </button>
         ))}
-      <button>Next</button>
     </div>
   );
 }

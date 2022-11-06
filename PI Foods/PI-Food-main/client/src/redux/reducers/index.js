@@ -15,7 +15,6 @@ const initialState = {
   recipeDetail: {},
   diets: [],
   stateToFilters: [],
-  stateToCleanFilters: [],
   msg: "",
 };
 
@@ -26,7 +25,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: action.payload,
         stateToFilters: action.payload,
-        stateToCleanFilters: action.payload,
       };
     case GET_RECIPE_BY_ID:
       return {
@@ -43,7 +41,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         recipes: state.recipes.concat(action.payload),
         stateToFilters: state.stateToFilters.concat(action.payload),
-        stateToCleanFilters: state.stateToCleanFilters.concat(action.payload),
       };
     case GET_DIETS:
       return {
@@ -53,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_BY_ORDER:
       const recipeInOrder =
         action.payload === "Filter by Order"
-          ? state.stateToCleanFilters
+          ? state.recipes
           : action.payload === "up"
           ? state.recipes.sort(function (a, b) {
               if (a.name > b.name) return 1;
@@ -87,9 +84,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case ORDER_BY_SCORE:
       const orderByScore =
-        action.payload === "Order by score"
-          ? state.recipes
-          : action.payload === "Hsc"
+        action.payload === "Hsc"
           ? state.recipes.sort((a, b) => {
               if (a.healthScore - b.healthScore < 0) return 1;
               else return -1;
@@ -100,14 +95,17 @@ const rootReducer = (state = initialState, action) => {
             });
       return {
         ...state,
-        recipes: orderByScore,
+        recipes:
+          action.payload === "Order by score"
+            ? state.stateToFilters
+            : orderByScore,
       };
     case ERROR_MSSG:
       return {
         ...state,
         msg: action.payload,
-        recipes: []
-      }
+        recipes: [],
+      };
     default:
       return state;
   }
