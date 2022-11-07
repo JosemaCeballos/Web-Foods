@@ -35,10 +35,7 @@ function Home() {
     <>
       <Navbar />
       <SearchBar />
-      <Filters
-        setOrder={setOrder}
-        setCurrentPage={setCurrentPage}
-      />
+      <Filters setOrder={setOrder} setCurrentPage={setCurrentPage} />
       <Paginate
         recipesPerPage={recipesPerPage}
         recipes={recipes.length}
@@ -59,8 +56,10 @@ function Home() {
           ))
         ) : !recipes.length ? (
           <div className="center-content">{msg}</div>
-        ) : (
+        ) : recipes.length === 0 ? (
           <Loader />
+        ) : (
+          <></>
         )}
       </div>
     </>

@@ -12,7 +12,7 @@ const getApiInfo = async () => {
       return {
         name: result.title,
         image: result.image,
-        idApi: result.id,
+        id: result.id,
         healthScore: result.healthScore,
         types: result.dishTypes?.map((element) => element),
         diets: result.diets?.map((element) => element),
@@ -47,9 +47,13 @@ const getDBInfo = async () => {
         name: recipe.name,
         summary: recipe.summary,
         healthScore: recipe.healthScore,
-        image: recipe.image === "" ? "https://cdn.dribbble.com/users/1012566/screenshots/4187820/topic-2.jpg" : recipe.image,
+        image:
+          recipe.image === ""
+            ? "https://cdn.dribbble.com/users/1012566/screenshots/4187820/topic-2.jpg"
+            : recipe.image,
         steps: recipe.steps,
         diets: recipe.diets?.map((diet) => diet.name),
+        createdInDb: recipe.createdInDb,
       };
     });
     return response;
@@ -60,7 +64,12 @@ const getAllRecipes = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDBInfo();
   const allInfoRecipes = dbInfo.concat(apiInfo);
-  return allInfoRecipes;
+  const allInfoInOrder = allInfoRecipes.sort(function (a, b) {
+    if (a.id > b.id) return 1;
+    if (a.id < b.id) return -1;
+    return 0;
+  });
+  return allInfoInOrder;
 };
 
 module.exports = { getAllRecipes };

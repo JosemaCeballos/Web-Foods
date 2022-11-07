@@ -29,6 +29,14 @@ h1{
     height: auto;
 }
 
+.custom-button{
+    padding: 3px;
+    margin-bottom: 4px;
+    background-color: ff851f;
+    color: white;
+    border: 1px solid black
+}
+
 @media(max-width: 500px){
     .about-recipe{
         max-width: 100%;

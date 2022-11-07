@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import * as actions from "../../redux/actions/index";
 import "./RecipeDetail.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,19 +9,18 @@ function RecipeDetail(props) {
   let dispatch = useDispatch();
   let detail = useSelector((state) => state.recipeDetail);
   React.useEffect(() => {
-    dispatch(
-      actions.getAllRecipesById(
-        props.match.params.id || props.match.params.idApi
-      )
-    );
-  }, [dispatch, props.match.params.id, props.match.params.idApi]);
+    dispatch(actions.getAllRecipesById(props.match.params.id));
+  }, [dispatch, props.match.params.id]);
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="about-recipe">
+        <Link to="/home">
+          <button className="custom-button">Back Home</button>
+        </Link>
         {Object.keys(detail).length > 0 && (
-          <div key={detail[0].idApi || detail[0].id} className="main">
+          <div key={detail[0].id} className="main">
             <div className="img-content">
               <img src={detail[0].image} alt="food" />
             </div>

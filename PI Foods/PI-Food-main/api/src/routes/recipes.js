@@ -29,7 +29,7 @@ router.get("/:idReceta", async (req, res) => {
 
   const infoTotal = await getAllRecipes();
   let infoById = infoTotal.filter(
-    (e) => e.idApi == idReceta || e.id == idReceta
+    (e) => e.id == idReceta
   );
   if (infoById.length > 0) res.status(200).json(infoById);
   else res.status(404).send("There is no recipe with that id");
@@ -55,24 +55,6 @@ router.post("/", async (req, res) => {
     res.status(201).json(newRecipe);
   } catch (error) {
     res.status(404).send(error.message);
-  }
-});
-
-router.put("/put/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name, summary, healthScore, image, steps, diets } = req.body;
-  try {
-    const recipeUpdate = await Recipe.findByPk(id);
-    recipeUpdate.name = name;
-    recipeUpdate.summary = summary;
-    recipeUpdate.healthScore = healthScore;
-    recipeUpdate.image = image;
-    recipeUpdate.steps = steps;
-    recipeUpdate.diets = diets;
-    await recipeUpdate.save();
-    res.status(204)
-  } catch (error) {
-    res.status(500).json({ message: error.message });
   }
 });
 
