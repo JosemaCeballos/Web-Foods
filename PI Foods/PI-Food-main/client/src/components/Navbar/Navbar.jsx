@@ -8,11 +8,13 @@ function Navbar() {
   return (
     <div className="Navbar">
       <div className="logoAndName">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3123/3123321.png"
-          alt="logo-food"
-          className="logo"
-        />
+        <Link to="/">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3123/3123321.png"
+            alt="logo-food"
+            className="logo"
+          />
+        </Link>
         <span className="nav-logo">Recipes&Diets</span>
       </div>
       <div className="social-logo">

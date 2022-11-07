@@ -17,3 +17,16 @@
     color: white;
     border: 1px solid #ff851b
 }
+
+.pagination button:active{
+    background: #c55c00;
+    color: white;
+    border: 1px solid #ff851b
+}
+
+
+@media(max-width: 700px){
+    .pagination button{
+        padding: 2px 5px
+    }
+}
