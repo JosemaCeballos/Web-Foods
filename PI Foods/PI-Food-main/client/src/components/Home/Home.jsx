@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MenuCard from "../MenuCard/MenuCard";
 import Filters from "../Filters/Filters.jsx";
 import SearchBar from "../SearchBar/SearchBar";
+import Navbar from "../Navbar/Navbar";
 import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRecipes, getDiets } from "../../redux/actions/index";
@@ -11,7 +12,6 @@ import Paginate from "../Paginate/Paginate";
 function Home() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
-  const diet = useSelector((state) => state.diets);
   const msg = useSelector((state) => state.msg);
 
   const [order, setOrder] = useState("");
@@ -33,6 +33,7 @@ function Home() {
 
   return (
     <>
+      <Navbar />
       <SearchBar />
       <Filters
         setOrder={setOrder}
@@ -42,6 +43,8 @@ function Home() {
         recipesPerPage={recipesPerPage}
         recipes={recipes.length}
         paginado={paginado}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
       <div className="card-god">
         {recipes.length > 0 ? (

@@ -22,3 +22,9 @@ Content-Type: application/json
         "vegan"
     ]
 }
+
+
+
+######GET
+GET http://localhost:3001/recipes
+Content-Type: application/json

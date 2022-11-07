@@ -58,4 +58,22 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/put/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, summary, healthScore, image, steps, diets } = req.body;
+  try {
+    const recipeUpdate = await Recipe.findByPk(id);
+    recipeUpdate.name = name;
+    recipeUpdate.summary = summary;
+    recipeUpdate.healthScore = healthScore;
+    recipeUpdate.image = image;
+    recipeUpdate.steps = steps;
+    recipeUpdate.diets = diets;
+    await recipeUpdate.save();
+    res.status(204)
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

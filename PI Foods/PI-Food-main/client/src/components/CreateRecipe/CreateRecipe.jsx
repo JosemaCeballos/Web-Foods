@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as actions from "../../redux/actions/index";
@@ -81,103 +82,106 @@ function CreateRecipe() {
   }
 
   return (
-    <div className="form-container">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          getDiets();
-          dispatchData(newRecipe);
-          setTimeout(() => history.push("/home"), 2000);
-        }}
-        className="form"
-      >
-        <div className="form-header">
-          <h1 className="form-title">Create your recipe!</h1>
-        </div>
-        <label className="form-label">Name of your recipe:</label>
-        <input
-          type="text"
-          name="name"
-          value={newRecipe.name}
-          onChange={handleChange}
-          className="form-input"
-          placeholder="Write the name here..."
-        ></input>
-        {errors.name && <p className="danger">{errors.name}</p>}
-        <label className="form-label">Recipe image url:</label>
-        <input
-          type="text"
-          name="image"
-          value={newRecipe.image}
-          onChange={handleChange}
-          placeholder="Image Url of your recipe..."
-          className="form-input"
-        ></input>
-        <label className="form-label">Health Score:</label>
-        <input
-          type="number"
-          name="healthScore"
-          value={newRecipe.healthScore}
-          onChange={handleChange}
-          className="form-input"
-          placeholder="Enter the score..."
-        ></input>
-        {errors.healthScore && <p className="danger">{errors.healthScore}</p>}
-        <label className="form-label">Summary:</label>
-        <textarea
-          name="summary"
-          value={newRecipe.summary}
-          onChange={handleChange}
-          className="form-textarea"
-          placeholder="Enter the Summary..."
-        ></textarea>
-        {errors.summary && <p className="danger">{errors.summary}</p>}
-        <label className="form-label">Steps to do it:</label>
-        <textarea
-          name="steps"
-          value={newRecipe.steps}
-          onChange={handleChange}
-          className="form-textarea"
-          placeholder="Enter the steps to do the recipe..."
-        ></textarea>
-        {errors.steps && <p className="danger">{errors.steps}</p>}
-        <label className="form-label">
-          Type of Diets(You can select more than one by clicking again):
-        </label>
-        <select onChange={handleSelect} name="diets" className="form-input">
-          <option disabled>Add diet type</option>
-          <option>gluten free</option>
-          <option>pescatarian</option>
-          <option>whole 30</option>
-          <option>dairy free</option>
-          <option>primal</option>
-          <option>lacto ovo vegetarian</option>
-          <option>fodmap friendly</option>
-          <option>vegan</option>
-          <option>ketogenic</option>
-          <option>paleolithic</option>
-        </select>
-        {newRecipe.diets.map((e) => (
-          <div key={e}>
-            <button className="form-input-diets">{e}</button>
-            <button className="delete" onClick={() => handleDelete(e)}>
-              X
-            </button>
+    <>
+      <Navbar />
+      <div className="form-container">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            getDiets();
+            dispatchData(newRecipe);
+            setTimeout(() => history.push("/home"), 2000);
+          }}
+          className="form"
+        >
+          <div className="form-header">
+            <h1 className="form-title">Create your recipe!</h1>
           </div>
-        ))}
-        {!newRecipe.name ? (
-          <input type="submit" className="btn-submit" disabled></input>
-        ) : errors.name ||
-          errors.diets ||
-          errors.summary ||
-          errors.healthScore ||
-          errors.steps ? (
-          <input type="submit" className="btn-submit" disabled></input>
-        ) : (
-          <input type="submit" className="btn-submit"></input>
-        )}
-      </form>
-    </div>
+          <label className="form-label">Name of your recipe:</label>
+          <input
+            type="text"
+            name="name"
+            value={newRecipe.name}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="Write the name here..."
+          ></input>
+          {errors.name && <p className="danger">{errors.name}</p>}
+          <label className="form-label">Recipe image url:</label>
+          <input
+            type="text"
+            name="image"
+            value={newRecipe.image}
+            onChange={handleChange}
+            placeholder="Image Url of your recipe..."
+            className="form-input"
+          ></input>
+          <label className="form-label">Health Score:</label>
+          <input
+            type="number"
+            name="healthScore"
+            value={newRecipe.healthScore}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="Enter the score..."
+          ></input>
+          {errors.healthScore && <p className="danger">{errors.healthScore}</p>}
+          <label className="form-label">Summary:</label>
+          <textarea
+            name="summary"
+            value={newRecipe.summary}
+            onChange={handleChange}
+            className="form-textarea"
+            placeholder="Enter the Summary..."
+          ></textarea>
+          {errors.summary && <p className="danger">{errors.summary}</p>}
+          <label className="form-label">Steps to do it:</label>
+          <textarea
+            name="steps"
+            value={newRecipe.steps}
+            onChange={handleChange}
+            className="form-textarea"
+            placeholder="Enter the steps to do the recipe..."
+          ></textarea>
+          {errors.steps && <p className="danger">{errors.steps}</p>}
+          <label className="form-label">
+            Type of Diets(You can select more than one by clicking again):
+          </label>
+          <select onChange={handleSelect} name="diets" className="form-input">
+            <option disabled>Add diet type</option>
+            <option>gluten free</option>
+            <option>pescatarian</option>
+            <option>whole 30</option>
+            <option>dairy free</option>
+            <option>primal</option>
+            <option>lacto ovo vegetarian</option>
+            <option>fodmap friendly</option>
+            <option>vegan</option>
+            <option>ketogenic</option>
+            <option>paleolithic</option>
+          </select>
+          {newRecipe.diets.map((e) => (
+            <div key={e}>
+              <button className="form-input-diets">{e}</button>
+              <button className="delete" onClick={() => handleDelete(e)}>
+                X
+              </button>
+            </div>
+          ))}
+          {!newRecipe.name ? (
+            <input type="submit" className="btn-submit" disabled></input>
+          ) : errors.name ||
+            errors.diets ||
+            errors.summary ||
+            errors.healthScore ||
+            errors.steps ? (
+            <input type="submit" className="btn-submit" disabled></input>
+          ) : (
+            <input type="submit" className="btn-submit"></input>
+          )}
+        </form>
+      </div>
+    </>
   );
 }
 
