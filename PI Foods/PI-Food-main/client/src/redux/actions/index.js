@@ -12,13 +12,13 @@ export const ERROR_MSSG = "ERROR_MSSG"
 
 export const getAllRecipes = () => {
   return async function (dispatch) {
-    let recipes = await axios.get("http://localhost:3001/recipes/");
+    let recipes = await axios.get("/recipes");
     return dispatch({ type: GET_ALL_RECIPES, payload: recipes.data });
   };
 };
 export const getAllRecipesById = (id) => {
   return async function (dispatch) {
-    let recipeById = await axios.get(`http://localhost:3001/recipes/${id}`);
+    let recipeById = await axios.get(`/recipes/${id}`);
     return dispatch({ type: GET_RECIPE_BY_ID, payload: recipeById.data });
   };
 };
@@ -29,7 +29,7 @@ export const getAllRecipesByName = (name) => {
     }
     try {
       let recipeByName = await axios.get(
-        `http://localhost:3001/recipes?name=${name}`
+        `/recipes?name=${name}`
       );
       return dispatch({ type: GET_RECIPE_BY_NAME, payload: recipeByName.data });
     } catch (error) {
@@ -40,7 +40,7 @@ export const getAllRecipesByName = (name) => {
 
 export const getDiets = () => {
   return async function (dispatch) {
-    const diets = await axios.get("http://localhost:3001/diets");
+    const diets = await axios.get("/diets");
     return dispatch({ type: GET_DIETS, payload: diets.data });
   };
 };
@@ -48,7 +48,7 @@ export const getDiets = () => {
 export const createRecipe = (recipe) => {
   return async function (dispatch) {
     const createRecipe = await axios.post(
-      "http://localhost:3001/recipes/",
+      "/recipes",
       recipe
     );
     return dispatch({ type: CREATE_RECIPE, payload: createRecipe.data });

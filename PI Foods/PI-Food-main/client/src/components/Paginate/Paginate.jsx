@@ -19,6 +19,9 @@ function Paginate({
         setCurrentPage(currentPage + 1);
       }
     }
+    if (currentPage === 12){
+      setCurrentPage(1)
+    }
   }
 
   function handlePrev() {
@@ -26,6 +29,9 @@ function Paginate({
       if (currentPage <= 12) {
         setCurrentPage(currentPage - 1);
       }
+    }
+    if (currentPage === 1){
+      setCurrentPage(12)
     }
   }
 

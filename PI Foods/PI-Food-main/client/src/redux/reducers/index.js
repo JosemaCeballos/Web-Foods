@@ -48,7 +48,8 @@ const rootReducer = (state = initialState, action) => {
         diets: action.payload,
       };
     case FILTER_BY_ORDER:
-      const recipeInOrder = action.payload === "up"
+      const recipeInOrder =
+        action.payload === "up"
           ? state.recipes.sort(function (a, b) {
               if (a.name > b.name) return 1;
               if (a.name < b.name) return -1;
@@ -61,14 +62,14 @@ const rootReducer = (state = initialState, action) => {
             });
       return {
         ...state,
-        recipes: 
-        action.payload === "Filter by Order"
-          ? state.stateToFilters.sort(function (a, b) {
-              if (a.id > b.id) return 1;
-              if (a.id < b.id) return -1;
-              return 0;
-            })
-          : recipeInOrder,
+        recipes:
+          action.payload === "Filter by Order"
+            ? state.stateToFilters.sort(function (a, b) {
+                if (a.id > b.id) return 1;
+                if (a.id < b.id) return -1;
+                return 0;
+              })
+            : recipeInOrder,
       };
     case FILTER_BY_DIETS:
       const allRecipes2 = state.stateToFilters;
@@ -93,20 +94,19 @@ const rootReducer = (state = initialState, action) => {
               if (a.healthScore - b.healthScore < 0) return 1;
               else return -1;
             })
-          : state.recipes.sort((a, b) => {
+          : action.payload === "Dsc"
+          ? state.recipes.sort((a, b) => {
               if (a.healthScore - b.healthScore > 0) return 1;
               else return -1;
+            })
+          : state.stateToFilters.sort(function (a, b) {
+              if (a.id > b.id) return 1;
+              if (a.id < b.id) return -1;
+              return 0;
             });
       return {
         ...state,
-        recipes:
-          action.payload === "Order by score"
-            ? state.stateToFilters.sort(function (a, b) {
-                if (a.id > b.id) return 1;
-                if (a.id < b.id) return -1;
-                return 0;
-              })
-            : orderByScore,
+        recipes: orderByScore,
       };
     case ERROR_MSSG:
       return {

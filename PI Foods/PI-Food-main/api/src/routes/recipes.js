@@ -10,10 +10,10 @@ router.get("/", async (req, res) => {
   const allRecipes = await getAllRecipes();
   if (name) {
     // verificamos si el name que esta en el query
-    const recetas = allRecipes.filter((r) =>
+    const recipesByName = allRecipes.filter((r) =>
       r.name.toLowerCase().includes(name.toLowerCase())
     );
-    if (recetas.length) return res.json(recetas);
+    if (recipesByName.length) return res.status(200).json(recipesByName);
     else
       return res
         .status(404)
@@ -28,9 +28,7 @@ router.get("/:idReceta", async (req, res) => {
   const { idReceta } = req.params;
 
   const infoTotal = await getAllRecipes();
-  let infoById = infoTotal.filter(
-    (e) => e.id == idReceta
-  );
+  let infoById = infoTotal.filter((e) => e.id == idReceta);
   if (infoById.length > 0) res.status(200).json(infoById);
   else res.status(404).send("There is no recipe with that id");
 });

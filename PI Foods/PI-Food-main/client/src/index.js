@@ -3,8 +3,13 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store/index";
+import axios from "axios";
 import App from "./App";
+import dotenv from "dotenv"
 import reportWebVitals from "./reportWebVitals";
+dotenv.config()
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 
 ReactDOM.render(
   <React.StrictMode>
