@@ -1,0 +1,60 @@
+.landing {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    background-image: url('https://s1.1zoom.me/big0/771/400926-svetik.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: auto;
+    padding: 2.5vh;
+    box-sizing: border-box;
+}
+
+.containt{
+    background: white;
+    width: 800px;
+    min-width: 300px;
+    height: 450px;
+    min-height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px #000;
+    margin: 174px auto;
+    border: 1px solid #ffffff40;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#filt{
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.containt h1{
+    font-size: 80px;
+    -webkit-text-stroke: 2px #ff851b;
+    color:white;
+}
+
+button {
+    color: white;
+    background: #ff851b;
+    border: 1px solid white;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+@media(max-width: 700px){
+    .landing{
+        background-image: url('https://rare-gallery.com/uploads/posts/289814-wallpaper-720-1520.jpg');
+    }
+}

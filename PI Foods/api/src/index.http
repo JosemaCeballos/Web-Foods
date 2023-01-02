@@ -1,0 +1,51 @@
+GET http://localhost:3001/diets
+Content-Type: application/json
+
+
+#######
+
+
+
+POST http://localhost:3001/recipes
+Content-Type: application/json
+
+{
+    "name": "Jotencietoss",
+    "image": "thattheimage",
+    "summary": "summary",
+    "healthScore": 2,
+    "steps": "asdjkasdljklklasd",
+    "image": "",
+    "diets": [
+        "gluten free",
+        "dairy free",
+        "lacto ovo vegetarian",
+        "vegan"
+    ]
+}
+
+
+
+######GET
+GET http://localhost:3001/recipes
+Content-Type: application/json
+
+
+
+
+#####PUT
+PUT http://localhost:3001/recipes/put/1
+Content-Type: application/json
+
+{
+    "name": "Gordito",
+    "image": "eimagee",
+    "summary": "summario",
+    "healthScore": 50,
+    "steps": "asd",
+    "diets": [
+        "dairy free",
+        "lacto ovo vegetarian",
+        "vegan"
+    ]
+}
